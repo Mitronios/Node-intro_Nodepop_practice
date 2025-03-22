@@ -1,12 +1,12 @@
 import http from "node:http";
+import app from "./app.js";
 
+const port = process.env.PORT || 3000;
 //Create http server
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "content-type": "text/plain" });
-  res.end(`Wake up Neo...`);
-});
+const server = http.createServer(app);
 
-//Start the server
-server.listen(3000, "127.0.0.1", () => {
-  console.log(`Server running at http://127.0.0.1:3000`);
+// server.on(error, (err) => console.error(err));
+server.on("listening", () => {
+  console.log(`Server started on http//localhost:${port}`);
 });
+server.listen(port);
