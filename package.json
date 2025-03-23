@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env PORT=5001 nodemon server.js"
+    "dev": "cross-env PORT=3000 nodemon server.js"
   },
   "type": "module",
   "keywords": [],
@@ -12,7 +12,8 @@
   "description": "Give a new life to the things you don't need anymore.",
   "dependencies": {
     "cross-env": "^7.0.3",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "http-errors": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
