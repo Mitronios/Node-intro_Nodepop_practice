@@ -1,13 +1,13 @@
 import express from "express";
 import createError from "http-errors";
+import logger from "morgan";
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("Receiving request of type", req.method, "to", req.url);
-  next();
-});
+//Logs middleware
+app.use(logger("dev"));
 
+//App routes
 app.get("/", (req, res, next) => {
   res.send("Hello");
 });
