@@ -1,16 +1,16 @@
 import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
+import homeRoutes from "./routes/home.js";
+import * as homeController from "./controllers/homeController.js";
 
 const app = express();
 
-//Logs middleware
+//Logs morgan
 app.use(logger("dev"));
 
 //App routes
-app.get("/", (req, res, next) => {
-  res.send("Hello");
-});
+app.use("/", homeRoutes);
 
 //Catch 404 and send error
 app.use((req, res, next) => {
