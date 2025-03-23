@@ -2,9 +2,15 @@ import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
 import homeRoutes from "./routes/home.js";
-import * as homeController from "./controllers/homeController.js";
 
 const app = express();
+
+//Configs
+app.set("views", "views");
+app.set("view engine", "ejs");
+
+//Locals
+app.locals.appName = "Nodepop";
 
 //Logs morgan
 app.use(logger("dev"));
