@@ -1,3 +1,4 @@
+import path from "node:path";
 import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
@@ -12,8 +13,11 @@ app.set("view engine", "ejs");
 //Locals
 app.locals.appName = "Nodepop";
 
-//Logs morgan
+//Logger morgan
 app.use(logger("dev"));
+
+//Static
+app.use(express.static(path.join(import.meta.dirname, "public")));
 
 //App routes
 app.use("/", homeRoutes);
