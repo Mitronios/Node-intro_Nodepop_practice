@@ -26,7 +26,12 @@ app.use((req, res, next) => {
 //Error handler
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.send(`Something went wrong: ${err.message}`);
+
+  //set locals, including error info in development
+  res.locals.message = err.message;
+  res.locals.error = process.env.NODEPOP_ENV === "development" ? err : {};
+
+  res.render("error");
 });
 
 export default app;
