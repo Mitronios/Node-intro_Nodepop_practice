@@ -2,13 +2,15 @@ import path from "node:path";
 import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
+import ejs from "ejs";
 import homeRoutes from "./routes/home.js";
 
 const app = express();
 
 //Configs
 app.set("views", "views");
-app.set("view engine", "ejs");
+app.set("view engine", "html");
+app.engine("html", ejs.__express);
 
 //Locals
 app.locals.appName = "Nodepop";
