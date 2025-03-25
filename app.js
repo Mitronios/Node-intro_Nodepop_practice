@@ -18,6 +18,9 @@ app.locals.appName = "Nodepop";
 //Logger morgan
 app.use(logger("dev"));
 
+//Urlencoded
+app.use(express.urlencoded({ extended: false }));
+
 //Static
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
