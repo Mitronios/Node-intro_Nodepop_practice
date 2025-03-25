@@ -36,6 +36,17 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
+  //Validations
+  if (err.array) {
+    err.message =
+      "Invalid request: " +
+      err
+        .array()
+        .map((err) => `${err.location} ${err.type} ${err.path} ${err.msg}`)
+        .join(", ");
+    err.status = 422;
+  }
+
   //set locals, including error info in development
   res.locals.message = err.message;
   res.locals.error = process.env.NODEPOP_ENV === "development" ? err : {};
