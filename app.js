@@ -3,8 +3,13 @@ import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
 import ejs from "ejs";
+import connectMongoose from "./lib/connectMongoose.js";
 import homeRoutes from "./routes/home.js";
 
+//Mongoose connect
+await connectMongoose();
+
+//Create express app
 const app = express();
 
 //Configs
@@ -36,7 +41,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
-  //Validations
+  //General Validation
   if (err.array) {
     err.message =
       "Invalid request: " +
