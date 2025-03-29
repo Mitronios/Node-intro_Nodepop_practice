@@ -5,7 +5,7 @@ export async function index(req, res, next) {
     if (!req.session.userID) {
       res.render("home", { products: [] });
     } else {
-      const products = await Product.find();
+      const products = await Product.find({ owner: req.session.userID });
       res.render("home", { products: products });
     }
   } catch (error) {
