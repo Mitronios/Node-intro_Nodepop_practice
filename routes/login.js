@@ -9,4 +9,7 @@ router.get("/", loginController.index);
 //Post
 router.post("/", loginController.postLogin);
 
+//logout
+router.get("/logout", loginController.logOut);
+
 export default router;

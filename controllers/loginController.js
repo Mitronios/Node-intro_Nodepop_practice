@@ -3,7 +3,7 @@ import User from "../models/User.js";
 export function index(req, res, next) {
   res.locals.error = "";
   res.locals.email = "";
-  res.render("login");
+  res.render("login", { req: req });
 }
 
 export async function postLogin(req, res, next) {
@@ -14,7 +14,8 @@ export async function postLogin(req, res, next) {
     const user = await User.findOne({ email: email });
     if (!user || !(await user.comparePassword(password))) {
       res.locals.error = "Invalid Credentials";
-      res.render("login");
+      res.locals.email = email;
+      res.render("login", { req: req });
       return;
     }
     req.session.userID = user.id;
@@ -23,4 +24,14 @@ export async function postLogin(req, res, next) {
   } catch (error) {
     next(error);
   }
+}
+
+export function logOut(req, res, next) {
+  req.session.regenerate((err) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.redirect("/");
+  });
 }

@@ -20,7 +20,7 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
       </ul>
-      <% if (!session.userId) { %>
+      <% if (!session.userID) { %>
       <a class="btn btn-success" href="/login">Login</a>
       <% } else { %>
       <a class="btn btn-outline-success" href="/logout">Logout</a>
