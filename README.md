@@ -64,4 +64,6 @@ Nodepop is a simple web application built with Node.js, Express, and MongoDB, de
 - **Mongoose:** MongoDB object modeling tool.
 - **Nodemon:** For automatic server restarts during development.
 
-Note: dotenv was added to handle private info, be sure to create a file .env and add the necesary changes to make it work. You can contact me on more information.
+Note: dotenv was added to handle private info, to connect MongoDB be sure to create a file .env or add the necesary changes to make it work.
+Same for bcrypt secret.
+You can contact me on more information.
