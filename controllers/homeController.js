@@ -1,5 +1,12 @@
-export function index(req, res, next) {
-  res.render("home");
+import User from "../models/User.js";
+
+export async function index(req, res, next) {
+  try {
+    res.locals.users = await User.find();
+    res.render("home");
+  } catch (error) {
+    next(error);
+  }
 }
 
 export function postWithBody(req, res, next) {
