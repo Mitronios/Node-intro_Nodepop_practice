@@ -34,23 +34,27 @@ async function initUsers() {
     {
       name: "Pedro Sanchez",
       email: "ps@example.np",
-      password: "examplePassword",
+      password: await User.hashPassword("1234"),
     },
     {
       name: "Louis Seinfield",
       email: "ls@example.np",
-      password: "examplePassword",
+      password: await User.hashPassword("2345"),
     },
-    { name: "Steve Aoki", email: "sa@example.np", password: "examplePassword" },
+    {
+      name: "Steve Aoki",
+      email: "sa@example.np",
+      password: await User.hashPassword("3456"),
+    },
     {
       name: "Daniel Matienzo",
       email: "dm@example.np",
-      password: "examplePassword",
+      password: await User.hashPassword("4567"),
     },
     {
       name: "Laura García",
       email: "lg@example.np",
-      password: "examplePassword",
+      password: await User.hashPassword("5678"),
     },
   ]);
 
