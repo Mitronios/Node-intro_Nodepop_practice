@@ -27,11 +27,17 @@ export async function postLogin(req, res, next) {
 }
 
 export function logOut(req, res, next) {
+  console.log("Logout route called");
+  console.log("Session before regenerate:", req.session);
   req.session.regenerate((err) => {
     if (err) {
+      console.error("Session regeneration error:", err);
       next(err);
       return;
     }
+    console.log("Session regenerated");
+    console.log("Session after regenerate:", req.session);
+    console.log("Redirecting to /");
     res.redirect("/");
   });
 }

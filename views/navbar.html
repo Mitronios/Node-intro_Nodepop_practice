@@ -1,6 +1,6 @@
 <%- include("header.html") %>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark mb-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><%= appName %></a>
     <button
@@ -23,7 +23,7 @@
       <% if (!session.userID) { %>
       <a class="btn btn-success" href="/login">Login</a>
       <% } else { %>
-      <a class="btn btn-outline-success" href="/logout">Logout</a>
+      <a class="btn bg-light text-success" href="/login/logout">Logout</a>
       <% } %>
     </div>
   </div>
