@@ -6,6 +6,7 @@ import ejs from "ejs";
 import connectMongoose from "./lib/connectMongoose.js";
 import homeRoutes from "./routes/home.js";
 import loginRoutes from "./routes/login.js";
+import * as sessionManager from "./lib/sessionManager.js";
 
 //Mongoose connect
 await connectMongoose();
@@ -29,6 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 
 //Static
 app.use(express.static(path.join(import.meta.dirname, "public")));
+
+//Sessions
+app.use(sessionManager.middleware);
+app.use(sessionManager.useSessionsInViews);
 
 //App routes
 app.use("/", homeRoutes);
