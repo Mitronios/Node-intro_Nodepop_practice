@@ -8,9 +8,14 @@ const userSchema = new Schema({
   password: String,
 });
 
-//Hashing password
+//Hashing password, model method
 userSchema.statics.hashPassword = (clearPassword) => {
   return bcrypt.hash(clearPassword, 10);
+};
+
+//Instances method
+userSchema.methods.comparePassword = function (clearPassword) {
+  return bcrypt.compare(clearPassword, this.password);
 };
 
 const User = mongoose.model("User", userSchema);

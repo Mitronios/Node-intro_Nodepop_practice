@@ -5,6 +5,7 @@ import logger from "morgan";
 import ejs from "ejs";
 import connectMongoose from "./lib/connectMongoose.js";
 import homeRoutes from "./routes/home.js";
+import loginRoutes from "./routes/login.js";
 
 //Mongoose connect
 await connectMongoose();
@@ -31,6 +32,7 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
 
 //App routes
 app.use("/", homeRoutes);
+app.use("/login", loginRoutes);
 
 //Catch 404 and send error
 app.use((req, res, next) => {

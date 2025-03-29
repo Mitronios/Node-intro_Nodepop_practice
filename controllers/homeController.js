@@ -1,8 +1,8 @@
-import User from "../models/User.js";
+import Product from "../models/Product.js";
 
 export async function index(req, res, next) {
   try {
-    res.locals.users = await User.find();
+    res.locals.users = await Product.find();
     res.render("home");
   } catch (error) {
     next(error);
