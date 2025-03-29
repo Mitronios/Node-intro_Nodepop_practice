@@ -2,8 +2,9 @@
 <html lang="en">
   <%- include("header.html") %>
   <body>
-    <%- include("navbar.html") %>
-    <p>User ID: <%= session.userId %></p>
+    <%- include("navbar.html") %> <% if (userName) { %>
+    <p>Welcome, <%= userName %></p>
+    <% } %>
     <!-- When no session logged -->
     <% if (!session.userID) { %>
     <p><a href="/login">Login</a> to access your products</p>
@@ -11,7 +12,7 @@
     <ul class="list-group">
       <% products.forEach(product => { %>
       <li class="list-group-item">
-        <%= product.name %> is <%= product.price %>
+        <%= product.name %> costs <%= product.price %>
       </li>
       <% }) %>
     </ul>
