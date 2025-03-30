@@ -4,15 +4,18 @@
   <body>
     <%- include("navbar.html") %> <% if (userName) { %>
     <div class="container">
-      <p>Welcome, <%= userName %></p>
+      <h2>Welcome, <%= userName %>.</h2>
+      <p>You have currently <%= products.length %> products for sale.</p>
       <% } %>
       <!-- When no session logged -->
       <% if (!session.userID) { %>
-      <p><a href="/login">Login</a> to access your products</p>
+      <p class="text-center">
+        <a href="/login">Login</a> to access your products
+      </p>
       <% } else { %>
       <ul class="list-group md">
         <% products.forEach(product => { %>
-        <li class="bg-warning list-group-item d-flex justify-content-between">
+        <li class="bg-info list-group-item d-flex justify-content-between">
           <%= product.name %> costs <%= product.price %>
           <a href="/product/delete/<%= product._id%>"
             ><i class="bi bi-trash3"></i

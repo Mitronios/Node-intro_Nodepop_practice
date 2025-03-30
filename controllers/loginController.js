@@ -18,7 +18,7 @@ export async function postLogin(req, res, next) {
       res.render("login", { req: req });
       return;
     }
-    req.session.userID = user.id;
+    req.session.userID = user._id;
 
     res.redirect("/");
   } catch (error) {

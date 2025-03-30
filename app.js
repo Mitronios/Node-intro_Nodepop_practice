@@ -4,9 +4,11 @@ import createError from "http-errors";
 import logger from "morgan";
 import ejs from "ejs";
 import connectMongoose from "./lib/connectMongoose.js";
+import * as sessionManager from "./lib/sessionManager.js";
 import homeRoutes from "./routes/home.js";
 import loginRoutes from "./routes/login.js";
-import * as sessionManager from "./lib/sessionManager.js";
+import productsRoutes from "./routes/products.js";
+import { assignOwnerMiddleware } from "./middlewares/assignOwnerMiddleware.js";
 
 //Mongoose connect
 await connectMongoose();
@@ -38,6 +40,7 @@ app.use(sessionManager.useSessionsInViews);
 //App routes
 app.use("/", homeRoutes);
 app.use("/login", loginRoutes);
+app.use("/products", assignOwnerMiddleware, productsRoutes);
 
 //Catch 404 and send error
 app.use((req, res, next) => {
