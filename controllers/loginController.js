@@ -9,6 +9,7 @@ export function index(req, res, next) {
 export async function postLogin(req, res, next) {
   try {
     const { email, password } = req.body;
+    const redir = req.query.redir;
 
     //find user
     const user = await User.findOne({ email: email });
@@ -18,26 +19,22 @@ export async function postLogin(req, res, next) {
       res.render("login", { req: req });
       return;
     }
+
     req.session.userId = user._id;
 
-    res.redirect("/");
+    res.redirect(redir ? redir : "/");
   } catch (error) {
     next(error);
   }
 }
 
 export function logOut(req, res, next) {
-  console.log("Logout route called");
-  console.log("Session before regenerate:", req.session);
   req.session.regenerate((err) => {
     if (err) {
       console.error("Session regeneration error:", err);
       next(err);
       return;
     }
-    console.log("Session regenerated");
-    console.log("Session after regenerate:", req.session);
-    console.log("Redirecting to /");
     res.redirect("/");
   });
 }
