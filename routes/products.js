@@ -10,4 +10,11 @@ router.get("/add", guard, productsController.index);
 //Post
 router.post("/add", guard, productsController.postNewProduct);
 
+//Delete]
+router.get(
+  "/product/delete/:productId",
+  guard,
+  productsController.deleteProduct
+);
+
 export default router;

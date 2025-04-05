@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 
+//Extract user id and assign it to rew.owner
+//This function will be used to create initial data and assign owner by name
 export async function assignOwnerMiddleware(req, res, next) {
   try {
     if (!req.session.userId) {
@@ -14,7 +16,7 @@ export async function assignOwnerMiddleware(req, res, next) {
       return next();
     }
 
-    req.owner = user._id; // Asigna el _id del usuario a req.owner
+    req.owner = user._id; // Assign the _id from user to req.owner
     next();
   } catch (error) {
     next(error);
