@@ -1,3 +1,46 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- include("header.html") %> <%- include("navbar.html") %>
+
+<div class="container mt-5">
+	<h1><%= __('Error!') %></h1>
+
+	<%# Obtener el código de estado HTTP. res.statusCode está disponible
+	automáticamente en EJS %> <% const statusCode = res.statusCode; %> <%# Mostrar
+	mensajes amigables según el código de estado %> <% if (statusCode === 404) {
+	%>
+	<h2><%= __('Page not found') %></h2>
+	<p><%= __('The page you requested could not be found.') %></p>
+	<p><%= __('Please check the URL or return to the %s.', __('homepage')) %></p>
+	<% } else if (statusCode === 401 || statusCode === 403) { %>
+	<h2><%= __('Access Denied') %></h2>
+	<p><%= __('You do not have permission to access this resource.') %></p>
+	<% } else if (statusCode >= 400 && statusCode < 500) { %> <%# Error genérico
+	para otros códigos 4xx %>
+	<h2><%= __('Client Error') %></h2>
+	<p><%= __('A problem occurred with your request.') %></p>
+	<p><%= message %></p>
+	<% } else { %> <%# Error genérico para códigos 5xx %>
+	<h2><%= __('Server Error') %></h2>
+	<p>
+		<%= __('An unexpected error occurred on our server. Please try again
+		later.') %>
+	</p>
+	<p><%= message %></p>
+	<% } %> <%# Mostrar detalles técnicos SOLO en desarrollo %> <% if
+	(app.get('env') === 'development') { %>
+	<h3><%= __('Details (Development Only):') %></h3>
+	<p><strong><%= __('Status:') %></strong> <%= statusCode %></p>
+	<p><strong><%= __('Original Message:') %></strong> <%= message %></p>
+	<%# 'error' tiene el stack completo en dev, vacío en prod %> <% if (error &&
+	error.stack) { %>
+	<h4><%= __('Stack Trace:') %></h4>
+	<pre><%= error.stack %></pre>
+	<% } %> <% } %>
+
+	<p><a href="/"><%= __('Return to Homepage') %></a></p>
+</div>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+	crossorigin="anonymous"
+></script>
