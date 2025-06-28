@@ -3,6 +3,7 @@ import express from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
 import ejs from 'ejs';
+import cookieParser from 'cookie-parser';
 import connectMongoose from './lib/connectMongoose.js';
 import * as sessionManager from './lib/sessionManager.js';
 import i18n from './lib/i18n.config.js';
@@ -10,6 +11,7 @@ import homeRoutes from './routes/home.js';
 import loginRoutes from './routes/login.js';
 import productsRoutes from './routes/products.js';
 import { assignOwnerMiddleware } from './middlewares/assignOwnerMiddleware.js';
+import { changeLang } from './controllers/langController.js';
 
 //Mongoose connect
 await connectMongoose();
@@ -41,8 +43,12 @@ app.use(express.static(path.join(import.meta.dirname, 'public')));
 app.use(sessionManager.middleware);
 app.use(sessionManager.useSessionsInViews);
 
+// Handle cookie
+app.use(cookieParser());
+
 //i18n
 app.use(i18n.init);
+app.get('/change-lang/:locale', changeLang);
 
 //App routes
 app.use('/', homeRoutes);

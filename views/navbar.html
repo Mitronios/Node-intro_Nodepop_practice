@@ -27,13 +27,24 @@
           </a>
         </li>
       </ul>
-      <% if (!session.userId) { %>
-      <a class="btn btn-success" href="/login"><%= __('Login') %></a>
-      <% } else { %>
-      <a class="btn bg-light text-success" href="/login/logout">
-        <%= __('Logout') %>
-      </a>
-      <% } %>
+      <div class="d-flex align-items-center gap-3">
+        <!-- Language switchers -->
+        <% getlocales().forEach(locale => { %>
+        <a href="/change-lang/<%= locale %>" class="text-light">
+          <i class="bi bi-globe"></i>
+          <%= locale %>
+        </a>
+        <% }) %>
+
+        <!-- Login/Logout button -->
+        <% if (!session.userId) { %>
+        <a class="btn btn-success" href="/login"><%= __('Login') %></a>
+        <% } else { %>
+        <a class="btn bg-light text-success" href="/login/logout">
+          <%= __('Logout') %>
+        </a>
+        <% } %>
+      </div>
     </div>
   </div>
 </nav>
