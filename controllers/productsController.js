@@ -8,9 +8,8 @@ export function index(req, res, next) {
 //Create new product
 export async function postNewProduct(req, res, next) {
   try {
-    const name = req.body.name;
-    const price = req.body.price;
-    const image = req.body.image;
+    const { name, price } = req.body;
+    const image = req.file?.filename;
     const owner = req.owner;
 
     if (!name || !price || !image || !owner) {

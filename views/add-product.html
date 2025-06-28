@@ -5,7 +5,7 @@
   <div class="alert alert-danger"><%= __('All fields are required') %></div>
   <% } %>
 
-  <form method="POST" action="/products/add">
+  <form method="POST" action="/products/add" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="inputName" class="form-label">
         <%= __('Product Name') %>
@@ -17,8 +17,13 @@
       <input name="price" type="text" class="form-control" id="inputPrice" />
     </div>
     <div class="mb-3">
-      <label for="inputImage" class="form-label"><%= __('Image URL') %></label>
-      <input name="image" type="text" class="form-control" id="inputImage" />
+      <label for="inputImage" class="form-label"><%= __('Image') %></label>
+      <input
+        name="productImage"
+        type="file"
+        class="form-control"
+        id="inputImage"
+      />
     </div>
     <button type="submit" class="btn btn-primary mb-3">
       <%= __('Submit') %>
