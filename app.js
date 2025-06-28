@@ -10,6 +10,7 @@ import i18n from './lib/i18n.config.js';
 import homeRoutes from './routes/home.js';
 import loginRoutes from './routes/login.js';
 import productsRoutes from './routes/products.js';
+import apiRoutes from './api/routes/apiProducts.js';
 import { assignOwnerMiddleware } from './middlewares/assignOwnerMiddleware.js';
 import { changeLang } from './controllers/langController.js';
 
@@ -36,6 +37,11 @@ app.use(logger('dev'));
 //Urlencoded
 app.use(express.urlencoded({ extended: false }));
 
+/**
+ * API routes
+ */
+app.use('/api', apiRoutes);
+
 //Static
 app.use(express.static(path.join(import.meta.dirname, 'public')));
 
@@ -50,7 +56,9 @@ app.use(cookieParser());
 app.use(i18n.init);
 app.get('/change-lang/:locale', changeLang);
 
-//App routes
+/**
+ * App routes
+ */
 app.use('/', homeRoutes);
 app.use('/login', loginRoutes);
 app.use('/products', assignOwnerMiddleware, productsRoutes);
