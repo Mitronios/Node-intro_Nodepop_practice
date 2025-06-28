@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "cross-env PORT=3000 NODEPOP_ENV=development nodemon server.js",
     "start": "cross-env NODEPOP_ENV=production node server.js",
-    "initDB": "node initDB.js",
-    "extract-i18n": "i18n-extract --config i18n-extract.config.js"
+    "initDB": "node initDB.js"
   },
   "type": "module",
   "keywords": [],
@@ -28,7 +27,6 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "i18n-extract": "^0.6.7",
     "nodemon": "^3.1.9"
   }
 }
