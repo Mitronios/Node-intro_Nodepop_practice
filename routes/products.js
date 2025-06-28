@@ -1,20 +1,20 @@
-import express from "express";
-import * as productsController from "../controllers/productsController.js";
-import { guard } from "../lib/sessionManager.js";
+import express from 'express';
+import * as productsController from '../controllers/productsController.js';
+import { guard } from '../lib/sessionManager.js';
 
 const router = express.Router();
 
 //Get
-router.get("/add", guard, productsController.index);
+router.get('/add', guard, productsController.index);
 
 //Post
-router.post("/add", guard, productsController.postNewProduct);
+router.post('/add', guard, productsController.postNewProduct);
 
 //Delete]
-router.get(
-  "/product/delete/:productId",
+router.post(
+  '/product/delete/:productId',
   guard,
-  productsController.deleteProduct
+  productsController.deleteProduct,
 );
 
 export default router;

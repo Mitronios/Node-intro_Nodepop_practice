@@ -1,32 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<%- include("header.html") %>
-	<body>
-		<%- include("navbar.html") %> <%
-		<div class="container">
-			if (userName) { %>
-			<h2><%= __('Welcome, %s.', userName) %></h2>
-			<p><%= __('You have currently %d products for sale.') %></p>
-			<% } %> <% if (!session.userId) { %>
-			<p class="text-center"><%= __('Login to access your products') %></p>
-			<% } else { %>
-			<ul class="list-group md">
-				<% products.forEach(product => { %>
-				<li class="bg-info list-group-item d-flex justify-content-between">
-					<%= product.name %> <%= __('costs') %> <%= product.price %>
-					<a href="/product/delete/<%= product._id%>"
-						><i class="bi bi-trash3"></i
-					></a>
-				</li>
-				<% }) %>
-			</ul>
-			<% } %>
-		</div>
+  <%- include("header.html") %>
+  <body>
+    <%- include("navbar.html") %>
+    <div class="container">
+      <% if (userName) { %>
+      <h2><%= __('Welcome, %s.', userName) %></h2>
+      <p>
+        <%= __('You have currently %d products for sale.').replace('%d',
+        products.length) %>
+      </p>
+      <% } %> <% if (!session.userId) { %>
+      <p class="text-center"><%= __('Login to access your products') %></p>
+      <% } else { %>
+      <ul class="list-group md">
+        <% products.forEach(product => { %>
+        <li class="bg-info list-group-item d-flex justify-content-between">
+          <%= product.name %> <%= __('costs') %> <%= product.price %>
+          <form
+            method="POST"
+            action="/products/product/delete/<%= product._id %>"
+            onsubmit="return confirm('Are you sure?');"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-link p-0">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </form>
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-			crossorigin="anonymous"
-		></script>
-	</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

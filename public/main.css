@@ -1,8 +1,8 @@
 :root {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 h2 p {
-    margin: 0;
-    margin-bottom: 1 rem;
+  margin: 0;
+  margin-bottom: 1 rem;
 }

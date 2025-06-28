@@ -52,7 +52,6 @@ Nodepop is a simple web application built with Node.js, Express, and MongoDB, de
   ```
 
   This command will:
-
   - Delete all existing records in the MongoDB database.
   - Create initial sample data for products and users.
   - **Use this command only when you want to reset your database.**
