@@ -25,8 +25,8 @@ Nodepop is a simple web application built with Node.js, Express, and MongoDB, de
 1.  Clone the repository:
 
     ```bash
-    git clone <repository_url>
-    cd nodepop
+    git clone <https://github.com/Mitronios/Node-intro_Nodepop_practice.git>
+    cd Node-intro_Nodepop_practice
     ```
 
 2.  Install dependencies:
