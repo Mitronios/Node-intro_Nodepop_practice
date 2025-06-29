@@ -6,17 +6,26 @@ import {
   addNewProduct,
   updateProduct,
   deleteProduct,
-} from '../apiProductController.js';
+} from '../controllers/apiProductController.js';
+import { loginJWT } from '../controllers/apiLoginController.js';
+import { guard } from '../../middlewares/jwtAuthMiddleware.js';
 
 const router = express.Router();
 
-router.get('/products', listProducts);
-router.get('/products/:productId', getOneProduct);
+router.post('/login', loginJWT);
 
-router.post('/products', upload.single('image'), addNewProduct);
+router.get('/products', guard, listProducts);
+router.get('/products/:productId', guard, getOneProduct);
 
-router.put('/products/:productId', upload.single('image'), updateProduct);
+router.post('/products', guard, upload.single('image'), addNewProduct);
 
-router.delete('/products/:productId', deleteProduct);
+router.put(
+  '/products/:productId',
+  guard,
+  upload.single('image'),
+  updateProduct,
+);
+
+router.delete('/products/:productId', guard, deleteProduct);
 
 export default router;

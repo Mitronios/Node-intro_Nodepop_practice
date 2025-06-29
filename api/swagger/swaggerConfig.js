@@ -17,7 +17,7 @@ const options = {
   },
   apis: [
     './api/routes/*.js',
-    './api/apiProductController.js',
+    './api/controllers/apiProductController.js',
     './api/swagger/swaggerComponents.js',
     './api/swagger/docs/*.js',
   ],
