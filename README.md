@@ -62,7 +62,20 @@ Nodepop is a simple web application built with Node.js, Express, and MongoDB, de
 - **MongoDB:** Database for data persistence.
 - **Mongoose:** MongoDB object modeling tool.
 - **Nodemon:** For automatic server restarts during development.
+- **Multer:** For multipart/formdata handling.
+- **i18n:** For internationalization and language management.
+- **Swagger:** For API documentation.
 
 Note: dotenv was added to handle private info, to connect MongoDB be sure to create a file .env or add the necesary changes to make it work.
 Same for bcrypt secret.
+Checkout the .env.example to see more details.
+
+#API docs
+A complete documentation was added thanks to Swagger jsdoc and Swagger UI.
+You can see the docs by navigating to:
+
+```sh
+  /api-docs/
+```
+
 You can contact me on more information.
