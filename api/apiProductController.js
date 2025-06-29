@@ -78,3 +78,21 @@ export const addNewProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.productId;
+    const productData = req.body;
+    productData.image = req.file?.filename;
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      productData,
+      { new: true },
+    );
+
+    res.json({ result: updatedProduct });
+  } catch (error) {
+    next(error);
+  }
+};
