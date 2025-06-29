@@ -70,7 +70,8 @@ Note: dotenv was added to handle private info, to connect MongoDB be sure to cre
 Same for bcrypt secret.
 Checkout the .env.example to see more details.
 
-#API docs
+## API docs
+
 A complete documentation was added thanks to Swagger jsdoc and Swagger UI.
 You can see the docs by navigating to:
 
