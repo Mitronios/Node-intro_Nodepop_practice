@@ -1,6 +1,6 @@
 import { unlink } from 'node:fs/promises';
 import path from 'node:path';
-import Product from '../models/Product.js';
+import Product from '../../models/Product.js';
 
 export const listProducts = async (req, res, next) => {
   try {
