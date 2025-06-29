@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import connectMongoose from './lib/connectMongoose.js';
 import * as sessionManager from './lib/sessionManager.js';
 import i18n from './lib/i18n.config.js';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './api/swagger/swaggerConfig.js';
 import homeRoutes from './routes/home.js';
 import loginRoutes from './routes/login.js';
 import productsRoutes from './routes/products.js';
@@ -36,6 +38,9 @@ app.use(logger('dev'));
 
 //Urlencoded
 app.use(express.urlencoded({ extended: false }));
+
+//Swagger route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**
  * API routes
