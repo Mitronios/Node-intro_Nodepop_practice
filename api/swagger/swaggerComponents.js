@@ -26,3 +26,13 @@
  *             type: string
  *           example: ["gaming", "console"]
  */
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
