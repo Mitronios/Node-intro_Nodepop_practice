@@ -1,10 +1,16 @@
 import express from 'express';
-import { listProducts, getOneProduct } from '../apiProductController.js';
+import upload from '../../lib/uploadConfig.js';
+import {
+  listProducts,
+  getOneProduct,
+  addNewProduct,
+} from '../apiProductController.js';
 
 const router = express.Router();
 
-//Get
 router.get('/products', listProducts);
 router.get('/products/:productId', getOneProduct);
+
+router.post('/products', upload.single('image'), addNewProduct);
 
 export default router;

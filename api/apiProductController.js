@@ -63,3 +63,18 @@ export const getOneProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+export const addNewProduct = async (req, res, next) => {
+  try {
+    const productData = req.body;
+
+    const product = new Product(productData);
+    product.image = req.file?.filename;
+
+    const savedProduct = await product.save();
+
+    res.status(201).json({ result: savedProduct });
+  } catch (error) {
+    next(error);
+  }
+};
