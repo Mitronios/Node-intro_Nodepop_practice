@@ -13,6 +13,7 @@ import homeRoutes from './routes/home.js';
 import loginRoutes from './routes/login.js';
 import productsRoutes from './routes/products.js';
 import apiRoutes from './api/routes/apiProducts.js';
+import apiAuthRoutes from './api/routes/apiAuthRoutes.js';
 import { assignOwnerMiddleware } from './middlewares/assignOwnerMiddleware.js';
 import { changeLang } from './controllers/langController.js';
 
@@ -38,7 +39,7 @@ app.use(logger('dev'));
 
 //Urlencoded
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.json());
 //Swagger route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -46,6 +47,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  * API routes
  */
 app.use('/api', apiRoutes);
+app.use('/api', apiAuthRoutes);
 
 //Static
 app.use(express.static(path.join(import.meta.dirname, 'public')));
