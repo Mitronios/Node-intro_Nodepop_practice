@@ -1,9 +1,22 @@
 import express from 'express';
-import { listProducts } from '../apiProductController.js';
+import upload from '../../lib/uploadConfig.js';
+import {
+  listProducts,
+  getOneProduct,
+  addNewProduct,
+  updateProduct,
+  deleteProduct,
+} from '../apiProductController.js';
 
 const router = express.Router();
 
-//Get
 router.get('/products', listProducts);
+router.get('/products/:productId', getOneProduct);
+
+router.post('/products', upload.single('image'), addNewProduct);
+
+router.put('/products/:productId', upload.single('image'), updateProduct);
+
+router.delete('/products/:productId', deleteProduct);
 
 export default router;

@@ -75,6 +75,11 @@ app.use((err, req, res, next) => {
   const statusCode = err.status || 500;
   res.status(statusCode);
 
+  // API errors
+  if (req.url.startsWith('/api')) {
+    res.json({ error: err.message });
+    return;
+  }
   if (err.array) {
     err.message =
       'Invalid request: ' +
