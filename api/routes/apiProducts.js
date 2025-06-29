@@ -7,8 +7,11 @@ import {
   updateProduct,
   deleteProduct,
 } from '../controllers/apiProductController.js';
+import { loginJWT } from '../controllers/apiLoginController.js';
 
 const router = express.Router();
+
+router.post('/login', loginJWT);
 
 router.get('/products', listProducts);
 router.get('/products/:productId', getOneProduct);
