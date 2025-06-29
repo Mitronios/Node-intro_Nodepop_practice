@@ -4,6 +4,8 @@
  *   get:
  *     summary: List all products
  *     description: Returns a list of products with optional filters like name, price, pagination, sorting, and projection.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: name
@@ -62,6 +64,8 @@
  *                 count:
  *                   type: integer
  *                   description: Total count (only if `count=true`)
+ *       401:
+ *         description: Unauthorized - JWT is missing or invalid
  */
 
 /**
@@ -70,6 +74,8 @@
  *   get:
  *     summary: Get a single product by ID
  *     description: Retrieve a specific product using its unique identifier.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: productId
@@ -87,6 +93,8 @@
  *               properties:
  *                 results:
  *                   $ref: '#/components/schemas/Product'
+ *       401:
+ *         description: Unauthorized - JWT is missing or invalid
  *       404:
  *         description: Product not found
  */
@@ -97,6 +105,8 @@
  *   post:
  *     summary: Add a new product
  *     description: Creates a new product and uploads an image file.
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -132,6 +142,8 @@
  *                   $ref: '#/components/schemas/Product'
  *       400:
  *         description: Invalid input data
+ *       401:
+ *         description: Unauthorized - JWT is missing or invalid
  */
 
 /**
@@ -140,6 +152,8 @@
  *   put:
  *     summary: Update an existing product
  *     description: Updates a product by ID. Accepts updated fields and optionally a new image file.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: productId
@@ -177,10 +191,12 @@
  *               properties:
  *                 result:
  *                   $ref: '#/components/schemas/Product'
- *       404:
- *         description: Product not found
  *       400:
  *         description: Invalid input data
+ *       401:
+ *         description: Unauthorized - JWT is missing or invalid
+ *       404:
+ *         description: Product not found
  */
 
 /**
@@ -189,6 +205,8 @@
  *   delete:
  *     summary: Delete a product
  *     description: Deletes a product by ID. If the product has an image, it will also be removed from the server.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: productId
@@ -199,6 +217,8 @@
  *     responses:
  *       200:
  *         description: Product deleted successfully (no content returned)
+ *       401:
+ *         description: Unauthorized - JWT is missing or invalid
  *       404:
  *         description: Product not found
  */
