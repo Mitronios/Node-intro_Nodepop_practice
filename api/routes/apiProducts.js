@@ -5,6 +5,7 @@ import {
   getOneProduct,
   addNewProduct,
   updateProduct,
+  deleteProduct,
 } from '../apiProductController.js';
 
 const router = express.Router();
@@ -15,5 +16,7 @@ router.get('/products/:productId', getOneProduct);
 router.post('/products', upload.single('image'), addNewProduct);
 
 router.put('/products/:productId', upload.single('image'), updateProduct);
+
+router.delete('/products/:productId', deleteProduct);
 
 export default router;

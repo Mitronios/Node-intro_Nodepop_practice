@@ -1,3 +1,5 @@
+import { unlink } from 'node:fs/promises';
+import path from 'node:path';
 import Product from '../models/Product.js';
 
 export const listProducts = async (req, res, next) => {
@@ -92,6 +94,29 @@ export const updateProduct = async (req, res, next) => {
     );
 
     res.json({ result: updatedProduct });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.productId;
+    const product = await Product.findById(productId);
+    if (product.image) {
+      await unlink(
+        path.join(
+          import.meta.dirname,
+          '..',
+          'uploads',
+          'products',
+          product.image,
+        ),
+      );
+    }
+    await Product.deleteOne({ _id: productId });
+
+    res.json();
   } catch (error) {
     next(error);
   }
