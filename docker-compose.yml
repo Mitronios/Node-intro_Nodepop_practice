@@ -1,0 +1,27 @@
+services:
+  nodepop:
+    build: .
+    container_name: nodepop-app
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      - NODEPOP_ENV=development
+      - PORT=3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    container_name: nodepop-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

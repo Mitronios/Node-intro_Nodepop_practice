@@ -79,4 +79,71 @@ You can see the docs by navigating to:
   /api-docs/
 ```
 
+# Docker & Docker Compose
+
+### Prerequisites
+
+[Docker](https://docs.docker.com/get-started/get-docker/) installed on your machine
+
+[Docker Compose](https://docs.docker.com/compose/install/) installed (usually comes with Docker Desktop)
+
+## Build and Run with Docker Compose
+
+This project uses Docker Compose to run both the Nodepop app and MongoDB together.
+
+1. Create a .env file in the project root with your environment variables:
+
+```sh
+MONGODB_URI=mongodb://root:<your_mongo_password>@mongo:27017/admin?authSource=admin
+SESSION_SECRET=your_session_secret
+JWT_SECRET=your_jwt_secret
+
+```
+
+2. Build and start the containers
+
+```sh
+docker compose up --build
+```
+
+This command will:
+
+- Build the Docker image for the Nodepop app
+
+- Start the Nodepop container and MongoDB container
+
+- Expose the app on http://localhost:3000
+
+3. Stop the containers
+
+To stop the running containers, run:
+
+```sh
+docker compose down
+```
+
+## Running Nodepop without Docker Compose (Optional)
+
+1. If you want to run the Nodepop app alone with Docker:
+
+Build the image:
+
+```sh
+docker build -t nodepop .
+```
+
+2. Run the container (make sure MongoDB is accessible from inside the container):
+
+```sh
+docker run -p 3000:3000 --env-file .env nodepop
+```
+
+## Notes
+
+- The MongoDB data is persisted in a Docker volume called mongo_data, so your data won’t be lost when stopping containers.
+
+- The Nodepop app connects to MongoDB using the hostname mongo inside Docker network.
+
+- Make sure to never commit your .env file to any public repository.
+
 You can contact me on more information.
